@@ -7,3 +7,8 @@ export const selectSearchMovie = createSelector(
   [moviesSelector],
   moviesState => moviesState.searchMovie,
 );
+
+export const selectMovies = createSelector(
+  [moviesSelector],
+  moviesState => moviesState.Movies,
+);
