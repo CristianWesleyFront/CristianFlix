@@ -1,3 +1,4 @@
 import { RootState } from './RootState';
+import { Movie, MovieList } from './Movie';
 
-export type { RootState };
+export type { RootState, Movie, MovieList };
