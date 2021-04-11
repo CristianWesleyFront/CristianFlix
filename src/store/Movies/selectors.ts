@@ -12,3 +12,13 @@ export const selectMovies = createSelector(
   [moviesSelector],
   moviesState => moviesState.Movies,
 );
+
+export const loadingMovies = createSelector(
+  [moviesSelector],
+  moviesState => moviesState.loading,
+);
+
+export const errorMovies = createSelector(
+  [moviesSelector],
+  moviesState => moviesState.error,
+);

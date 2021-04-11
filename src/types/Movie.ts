@@ -6,6 +6,15 @@ export interface MovieList {
   Poster: string;
 }
 
+export interface MovieListLayout {
+  Title: string;
+  Year: string;
+  imdbID: string;
+  Type: string;
+  Poster: string;
+  liked: boolean;
+}
+
 export interface Movie {
   Title: string;
   Year: string;

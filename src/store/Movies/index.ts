@@ -6,7 +6,7 @@ import { moviesSaga } from './saga';
 import { MoviesState, MovieErrorType } from './types';
 
 export const initialState: MoviesState = {
-  searchMovie: 'batman',
+  searchMovie: '',
   loading: false,
   error: null,
   Movies: [],
@@ -29,7 +29,7 @@ const slice = createSlice({
       state.Movies = Movies;
       state.loading = false;
     },
-    MovieError(state, action: PayloadAction<MovieErrorType>) {
+    MovieError(state, action: PayloadAction<MovieErrorType | null>) {
       state.error = action.payload;
       state.loading = false;
     },

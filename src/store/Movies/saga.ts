@@ -13,6 +13,7 @@ export function* getMovies() {
 
   try {
     // Call our request helper (see 'utils/request')
+
     const response = yield call(Api.getMovies, { name: search });
 
     const movies: MovieList[] = yield response?.Search;

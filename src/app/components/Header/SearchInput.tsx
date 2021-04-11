@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useMoviesSlice } from 'store/Movies';
@@ -9,32 +9,26 @@ export function SearchInput() {
   const dispatch = useDispatch();
   const { actions } = useMoviesSlice();
   const searchString = useSelector(selectSearchMovie);
-  const [value, setValue] = useState(searchString);
-  const [redirec, setRedirec] = useState(false);
-
-  const handleSearch = e => {
-    e.preventDefault();
-    dispatch(actions.searchMovie(e.target.search.value));
-    setRedirec(true);
-  };
+  const [redirect, setRedirect] = useState(false);
 
   const handleChange = e => {
-    setValue(e.target.value);
+    dispatch(actions.searchMovie(e.target.value));
+    dispatch(actions.MovieError(null));
+    if (e.target.value.length === 3) {
+      setRedirect(true);
+    }
   };
 
-  useEffect(() => {
-    setValue(searchString);
-  }, [searchString]);
-
   return (
-    <SearchContainer onSubmit={handleSearch}>
-      {redirec && <Redirect to={`/search?q=${value}`} />}
+    <SearchContainer>
+      {redirect && <Redirect to={`/search?q=${searchString}`} />}
+
       <input
         id="headerInput"
         type="search"
         name="search"
         placeholder="Search"
-        value={value}
+        value={searchString}
         onChange={handleChange}
       />
     </SearchContainer>

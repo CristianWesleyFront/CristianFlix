@@ -2,7 +2,11 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Helmet } from 'react-helmet-async';
 import { useMoviesSlice } from 'store/Movies';
-import { selectMovies } from 'store/Movies/selectors';
+import {
+  selectMovies,
+  errorMovies,
+  loadingMovies,
+} from 'store/Movies/selectors';
 
 import { Container } from './styles';
 
@@ -17,6 +21,8 @@ export function HomePage() {
   const { likedMovies } = useLikedMovies();
 
   const movies = useSelector(selectMovies);
+  const loading = useSelector(loadingMovies);
+  const error = useSelector(errorMovies);
 
   const useEffectOnMount = (effect: React.EffectCallback) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -24,8 +30,8 @@ export function HomePage() {
   };
 
   useEffectOnMount(() => {
-    // When initial state username is not null, submit the form to load repos
-    dispatch(actions.loadMovies());
+    dispatch(actions.searchMovie(''));
+    dispatch(actions.MovieLoaded([]));
   });
 
   return (
@@ -39,9 +45,19 @@ export function HomePage() {
         <Banner />
         <section className="listMovies">
           {likedMovies?.length > 0 && (
-            <MoviesRow title={'Liked Movies'} items={likedMovies} />
+            <MoviesRow
+              title={'Liked Movies'}
+              items={likedMovies}
+              error={null}
+              loading={false}
+            />
           )}
-          <MoviesRow title={'BATMAN Movies'} items={[...movies, ...movies]} />
+          <MoviesRow
+            title={'BATMAN Movies'}
+            items={[...movies, ...movies]}
+            error={error}
+            loading={loading}
+          />
         </section>
       </Container>
     </>

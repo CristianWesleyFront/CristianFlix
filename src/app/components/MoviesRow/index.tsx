@@ -3,11 +3,14 @@ import React, { useState, useMemo } from 'react';
 import { MdNavigateBefore, MdNavigateNext } from 'react-icons/md';
 
 import { Container } from './styles';
-
-import { LikeButton } from './LikeButton';
+import { MovieItem } from '../MovieItem';
 import { useLikedMovies } from 'hooks/useLikedMovies';
+import { MovieListLayout } from 'types';
 
-export function MoviesRow({ title, items }) {
+import { Loading } from 'app/components/Loading';
+import { Error } from 'app/components/Error';
+
+export function MoviesRow({ title, items, error, loading }) {
   const [scrollX, setScrollX] = useState(0);
   const { likedMovies } = useLikedMovies();
 
@@ -29,22 +32,26 @@ export function MoviesRow({ title, items }) {
 
   const dataFilter = useMemo(() => {
     if (likedMovies?.length === 0) {
-      return items;
+      return items.map(e => ({ ...e, liked: false }));
     }
 
-    return items?.map(item => {
+    let newArray: MovieListLayout[] = [];
+
+    items?.forEach(item => {
       if (likedMovies?.filter(e => e.imdbID === item.imdbID).length > 0) {
-        return {
+        newArray.push({
           ...item,
           liked: true,
-        };
+        });
       } else {
-        return {
+        newArray.push({
           ...item,
           liked: false,
-        };
+        });
       }
     });
+
+    return newArray;
   }, [items, likedMovies]);
 
   return (
@@ -57,27 +64,28 @@ export function MoviesRow({ title, items }) {
         <MdNavigateNext style={{ fontSize: '2rem' }} />
       </div>
 
-      <div className="movieRowListarea">
-        <div
-          className="movieRowList"
-          style={{
-            marginLeft: scrollX,
-            width: items?.length * 200,
-          }}
-        >
-          {dataFilter?.length > 0 &&
-            dataFilter?.map((item, key) => (
-              <div key={key} className="movieRowItem">
-                <img src={item?.Poster} alt={`${item?.Title}-poster`} />
-                <div className="informations">
-                  <span className="title">{item?.Title}</span>
-                  <span className="year">{item?.Year}</span>
-                  <LikeButton item={item} />
-                </div>
-              </div>
-            ))}
-        </div>
+      <div className="feddBack">
+        {loading && <Loading />}
+
+        {error === 1 && <Error />}
       </div>
+
+      {loading === false && error === null && (
+        <div className="movieRowListarea">
+          <div
+            className="movieRowList"
+            style={{
+              marginLeft: scrollX,
+              width: items?.length * 200,
+            }}
+          >
+            {dataFilter?.length > 0 &&
+              dataFilter?.map((item, key) => (
+                <MovieItem key={key} item={item} />
+              ))}
+          </div>
+        </div>
+      )}
     </Container>
   );
 }
