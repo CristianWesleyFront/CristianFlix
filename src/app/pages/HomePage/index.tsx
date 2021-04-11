@@ -30,8 +30,8 @@ export function HomePage() {
   };
 
   useEffectOnMount(() => {
-    // When initial state username is not null, submit the form to load repos
-    dispatch(actions.loadMovies());
+    dispatch(actions.searchMovie(''));
+    dispatch(actions.MovieLoaded([]));
   });
 
   return (

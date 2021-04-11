@@ -10,23 +10,18 @@ export function SearchInput() {
   const { actions } = useMoviesSlice();
   const searchString = useSelector(selectSearchMovie);
   const [redirect, setRedirect] = useState(false);
-  const [redirectHome, setRedirecHome] = useState(false);
 
   const handleChange = e => {
     dispatch(actions.searchMovie(e.target.value));
-    if (e.target.value.length > 3) {
+    dispatch(actions.MovieError(null));
+    if (e.target.value.length === 3) {
       setRedirect(true);
-    }
-
-    if (e.target.value === '') {
-      setRedirecHome(true);
     }
   };
 
   return (
     <SearchContainer>
       {redirect && <Redirect to={`/search?q=${searchString}`} />}
-      {redirectHome && <Redirect to={`/`} />}
 
       <input
         id="headerInput"

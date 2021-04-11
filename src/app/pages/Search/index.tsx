@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import useQuery from 'hooks/useQueryParams';
+// import useQuery from 'hooks/useQueryParams';
 import { Helmet } from 'react-helmet-async';
 import { Container } from './styles';
 import { useMoviesSlice } from 'store/Movies';
@@ -19,29 +19,31 @@ import { Loading } from 'app/components/Loading';
 import { Error, NotFound } from 'app/components/Error';
 
 export function Search() {
-  const queryParms = useQuery();
+  // const queryParms = useQuery();
   const dispatch = useDispatch();
   const { actions } = useMoviesSlice();
   const movies = useSelector(selectMovies);
   const search = useSelector(selectSearchMovie);
   const loading = useSelector(loadingMovies);
   const error = useSelector(errorMovies);
-  const querySearch = queryParms.get('q');
+  // const querySearch = queryParms.get('q');
   const { likedMovies } = useLikedMovies();
 
   useEffect(() => {
     const element = document.getElementById('headerInput');
     element?.focus();
 
-    if (
-      search === '' &&
-      querySearch !== null &&
-      loading === false &&
-      error === null
-    ) {
-      dispatch(actions.searchMovie(querySearch));
-    }
-    if (search.length > 2) {
+    // if (
+    //   search === '' &&
+    //   querySearch !== null &&
+    //   loading === false &&
+    //   error === null
+    // ) {
+    //   dispatch(actions.searchMovie(querySearch));
+    //   dispatch(actions.loadMovies());
+    // }
+
+    if (search !== '') {
       dispatch(actions.loadMovies());
     }
   }, [actions, dispatch, search]);
@@ -83,7 +85,7 @@ export function Search() {
 
         {error === 1 && <Error />}
 
-        {loading === false && error === null && (
+        {loading === false && error === null && dataFilter.length > 0 && (
           <GridMovies items={dataFilter} search={search} />
         )}
       </Container>

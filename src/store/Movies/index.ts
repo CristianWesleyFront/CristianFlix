@@ -29,7 +29,7 @@ const slice = createSlice({
       state.Movies = Movies;
       state.loading = false;
     },
-    MovieError(state, action: PayloadAction<MovieErrorType>) {
+    MovieError(state, action: PayloadAction<MovieErrorType | null>) {
       state.error = action.payload;
       state.loading = false;
     },
