@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Helmet } from 'react-helmet-async';
 import { useMoviesSlice } from 'store/Movies';
@@ -8,7 +8,6 @@ import { Container } from './styles';
 
 import { useLikedMovies } from 'hooks/useLikedMovies';
 
-import { Header } from 'app/components/Header';
 import { Banner } from 'app/components/Banner';
 import { MoviesRow } from 'app/components/MoviesRow';
 
@@ -29,29 +28,14 @@ export function HomePage() {
     dispatch(actions.loadMovies());
   });
 
-  const [headerBlack, setHeaderBlack] = useState(false);
-
-  useEffect(() => {
-    const scrollListener = () => {
-      window.scrollY > 10 ? setHeaderBlack(true) : setHeaderBlack(false);
-    };
-
-    window.addEventListener('scroll', scrollListener);
-
-    return () => {
-      window.removeEventListener('scroll', scrollListener);
-    };
-  }, []);
-
   return (
     <>
       <Helmet>
         <title>Home Page</title>
-        <meta name="description" content="A Boilerplate application homepage" />
+        <meta name="description" content="A home page" />
       </Helmet>
 
       <Container>
-        <Header color={headerBlack} />
         <Banner />
         <section className="listMovies">
           {likedMovies?.length > 0 && (

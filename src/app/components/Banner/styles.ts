@@ -58,6 +58,8 @@ export const Container = styled.section`
     margin-right: 10px;
     opacity: 1;
     transition: all ease 0.2s;
+    border: none;
+    cursor: pointer;
   }
 
   .seachButton:hover,
