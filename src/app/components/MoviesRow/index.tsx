@@ -7,7 +7,10 @@ import { MovieItem } from '../MovieItem';
 import { useLikedMovies } from 'hooks/useLikedMovies';
 import { MovieListLayout } from 'types';
 
-export function MoviesRow({ title, items }) {
+import { Loading } from 'app/components/Loading';
+import { Error } from 'app/components/Error';
+
+export function MoviesRow({ title, items, error, loading }) {
   const [scrollX, setScrollX] = useState(0);
   const { likedMovies } = useLikedMovies();
 
@@ -61,18 +64,28 @@ export function MoviesRow({ title, items }) {
         <MdNavigateNext style={{ fontSize: '2rem' }} />
       </div>
 
-      <div className="movieRowListarea">
-        <div
-          className="movieRowList"
-          style={{
-            marginLeft: scrollX,
-            width: items?.length * 200,
-          }}
-        >
-          {dataFilter?.length > 0 &&
-            dataFilter?.map((item, key) => <MovieItem key={key} item={item} />)}
-        </div>
+      <div className="feddBack">
+        {loading && <Loading />}
+
+        {error === 1 && <Error />}
       </div>
+
+      {loading === false && error === null && (
+        <div className="movieRowListarea">
+          <div
+            className="movieRowList"
+            style={{
+              marginLeft: scrollX,
+              width: items?.length * 200,
+            }}
+          >
+            {dataFilter?.length > 0 &&
+              dataFilter?.map((item, key) => (
+                <MovieItem key={key} item={item} />
+              ))}
+          </div>
+        </div>
+      )}
     </Container>
   );
 }

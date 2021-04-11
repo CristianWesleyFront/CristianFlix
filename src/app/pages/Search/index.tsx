@@ -15,6 +15,9 @@ import { useLikedMovies } from 'hooks/useLikedMovies';
 import { GridMovies } from 'app/components/GridMovies';
 import { MovieListLayout } from 'types';
 
+import { Loading } from 'app/components/Loading';
+import { Error, NotFound } from 'app/components/Error';
+
 export function Search() {
   const queryParms = useQuery();
   const dispatch = useDispatch();
@@ -74,7 +77,15 @@ export function Search() {
         <meta name="description" content="search page" />
       </Helmet>
       <Container>
-        <GridMovies items={dataFilter} search={search} />
+        {loading && <Loading />}
+
+        {error === 2 && <NotFound search={search} />}
+
+        {error === 1 && <Error />}
+
+        {loading === false && error === null && (
+          <GridMovies items={dataFilter} search={search} />
+        )}
       </Container>
     </>
   );

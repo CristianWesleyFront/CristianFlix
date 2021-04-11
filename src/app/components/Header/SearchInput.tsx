@@ -14,7 +14,10 @@ export function SearchInput() {
 
   const handleChange = e => {
     dispatch(actions.searchMovie(e.target.value));
-    setRedirect(true);
+    if (e.target.value.length > 3) {
+      setRedirect(true);
+    }
+
     if (e.target.value === '') {
       setRedirecHome(true);
     }

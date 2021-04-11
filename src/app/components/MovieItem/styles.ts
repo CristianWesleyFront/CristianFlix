@@ -64,7 +64,7 @@ export const Container = styled.div`
 
       transition: all ease 0.2s;
       &:hover {
-        color: #e50914;
+        color: var(--red);
         transform: scale(1.2);
       }
     }
@@ -85,11 +85,11 @@ export const Container = styled.div`
 export const Like = styled.div<iLike>`
   margin-top: 2rem;
   cursor: pointer;
-  color: ${props => (props.isLiked ? '#e50914' : '#fff')};
+  color: ${props => (props.isLiked ? 'var(--red)' : '#fff')};
 
   transition: all ease 0.2s;
   &:hover {
-    color: #e50914;
+    color: var(--red);
     transform: scale(1.2);
   }
 `;

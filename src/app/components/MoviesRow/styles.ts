@@ -6,6 +6,14 @@ export const Container = styled.div`
     margin: 0px 0px 0px 30px;
   }
 
+  .feddBack {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+  }
+
   .movieRowListarea {
     overflow-x: hidden;
     overflow-y: hidden;
