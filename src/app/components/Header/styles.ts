@@ -11,7 +11,7 @@ export const Container = styled.header`
   justify-content: space-between;
   align-items: center;
   padding: 0 30px;
-  background: ${props => (props.color ? 'var(--background)' : 'transparent')};
+  background: ${props => props.color};
   transition: all ease 0.5s;
 
   .headerLogo {

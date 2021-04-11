@@ -19,10 +19,10 @@ export function* getMovies() {
     if (movies?.length > 0) {
       yield put(actions.MovieLoaded(movies));
     } else {
-      yield put(actions.repoError(MovieErrorType.MOVIE_NOT_FOUND));
+      yield put(actions.MovieError(MovieErrorType.MOVIE_NOT_FOUND));
     }
   } catch (err) {
-    yield put(actions.repoError(MovieErrorType.RESPONSE_ERROR));
+    yield put(actions.MovieError(MovieErrorType.RESPONSE_ERROR));
   }
 }
 

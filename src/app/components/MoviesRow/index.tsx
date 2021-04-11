@@ -1,12 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 
 import { MdNavigateBefore, MdNavigateNext } from 'react-icons/md';
-import { BsFillHeartFill } from 'react-icons/bs';
 
 import { Container } from './styles';
 
+import { LikeButton } from './LikeButton';
+import { useLikedMovies } from 'hooks/useLikedMovies';
+
 export function MoviesRow({ title, items }) {
   const [scrollX, setScrollX] = useState(0);
+  const { likedMovies } = useLikedMovies();
 
   const handleLeftArrow = () => {
     let x = scrollX + Math.round(window.innerWidth / 2);
@@ -17,12 +20,32 @@ export function MoviesRow({ title, items }) {
   };
   const handleRightArrow = () => {
     let x = scrollX - Math.round(window.innerWidth / 2);
-    let listW = items.length * 200;
+    let listW = items?.length * 200;
     if (window.innerWidth - listW > x) {
       x = window.innerWidth - listW - 60;
     }
     setScrollX(x);
   };
+
+  const dataFilter = useMemo(() => {
+    if (likedMovies?.length === 0) {
+      return items;
+    }
+
+    return items?.map(item => {
+      if (likedMovies?.filter(e => e.imdbID === item.imdbID).length > 0) {
+        return {
+          ...item,
+          liked: true,
+        };
+      } else {
+        return {
+          ...item,
+          liked: false,
+        };
+      }
+    });
+  }, [items, likedMovies]);
 
   return (
     <Container className="movieRow">
@@ -39,19 +62,17 @@ export function MoviesRow({ title, items }) {
           className="movieRowList"
           style={{
             marginLeft: scrollX,
-            width: items.length * 200,
+            width: items?.length * 200,
           }}
         >
-          {items.length > 0 &&
-            items.map((item, key) => (
+          {dataFilter?.length > 0 &&
+            dataFilter?.map((item, key) => (
               <div key={key} className="movieRowItem">
-                <img src={item.Poster} alt={`${item.Title}-poster`} />
+                <img src={item?.Poster} alt={`${item?.Title}-poster`} />
                 <div className="informations">
-                  <span className="title">{item.Title}</span>
-                  <span className="year">{item.Year}</span>
-                  <div className="like">
-                    <BsFillHeartFill style={{ fontSize: '2rem' }} />
-                  </div>
+                  <span className="title">{item?.Title}</span>
+                  <span className="year">{item?.Year}</span>
+                  <LikeButton item={item} />
                 </div>
               </div>
             ))}

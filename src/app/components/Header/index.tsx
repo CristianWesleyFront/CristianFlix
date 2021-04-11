@@ -6,7 +6,7 @@ import { Container } from './styles';
 
 export function Header({ color }) {
   return (
-    <Container color={color}>
+    <Container color={color ? 'var(--background)' : 'transparent'}>
       <div className="headerLogo">
         <Link to="/">
           <img src={logo} alt="logo CristianFlix" />

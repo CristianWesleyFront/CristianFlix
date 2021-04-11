@@ -6,6 +6,8 @@ import { selectMovies } from 'store/Movies/selectors';
 
 import { Container } from './styles';
 
+import { useLikedMovies } from 'hooks/useLikedMovies';
+
 import { Header } from 'app/components/Header';
 import { Banner } from 'app/components/Banner';
 import { MoviesRow } from 'app/components/MoviesRow';
@@ -13,6 +15,7 @@ import { MoviesRow } from 'app/components/MoviesRow';
 export function HomePage() {
   const dispatch = useDispatch();
   const { actions } = useMoviesSlice();
+  const { likedMovies } = useLikedMovies();
 
   const movies = useSelector(selectMovies);
 
@@ -23,7 +26,6 @@ export function HomePage() {
 
   useEffectOnMount(() => {
     // When initial state username is not null, submit the form to load repos
-
     dispatch(actions.loadMovies());
   });
 
@@ -47,14 +49,15 @@ export function HomePage() {
         <title>Home Page</title>
         <meta name="description" content="A Boilerplate application homepage" />
       </Helmet>
+
       <Container>
         <Header color={headerBlack} />
         <Banner />
         <section className="listMovies">
+          {likedMovies?.length > 0 && (
+            <MoviesRow title={'Liked Movies'} items={likedMovies} />
+          )}
           <MoviesRow title={'BATMAN Movies'} items={[...movies, ...movies]} />
-          <div id="spiderman">spiderman</div>
-          <div id="witch">witch</div>
-          <div id="hacker">hacker</div>
         </section>
       </Container>
     </>

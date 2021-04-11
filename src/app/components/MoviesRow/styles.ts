@@ -31,10 +31,12 @@ export const Container = styled.div`
 
   .movieRowList {
     transition: all ease 0.2s;
+
+    display: flex;
+    flex-direction: row;
   }
 
   .movieRowItem {
-    display: inline-block;
     width: 200px;
     height: 290px;
     cursor: pointer;
@@ -89,7 +91,7 @@ export const Container = styled.div`
       }
 
       .like {
-        margin-top: 2rem;
+        margin-top: 40px;
         cursor: pointer;
 
         transition: all ease 0.2s;
@@ -103,7 +105,7 @@ export const Container = styled.div`
     &:hover {
       transform: scale(1.2);
       img {
-        filter: blur(4px);
+        filter: blur(5px);
       }
 
       .informations {
