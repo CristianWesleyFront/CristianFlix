@@ -1,14 +1,26 @@
 import { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyle = createGlobalStyle`
+
+:root {
+    --background: #141414;
+    --text: #fff;
+    --title: #e5e5e5;
+  }
+
   html,
   body {
     height: 100%;
     width: 100%;
+
+    background: var(--background);
+    color: var(--text);
+    line-height: 1.2;
+    cursor: default;
   }
 
   body {
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-family: 'Roboto','Helvetica Neue', Helvetica, Arial, sans-serif;
   }
 
   #root {
@@ -18,7 +30,7 @@ export const GlobalStyle = createGlobalStyle`
 
   p,
   label {
-    font-family: Georgia, Times, 'Times New Roman', serif;
+    font-family: 'Roboto', Georgia, Times, 'Times New Roman', serif;
     line-height: 1.5em;
   }
 

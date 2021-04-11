@@ -22,6 +22,8 @@ import { HelmetProvider } from 'react-helmet-async';
 
 import { configureAppStore } from 'store/configureStore';
 
+import { LikedMoviesProvider } from 'hooks/useLikedMovies';
+
 import reportWebVitals from 'reportWebVitals';
 
 // Initialize languages
@@ -34,7 +36,9 @@ ReactDOM.render(
   <Provider store={store}>
     <HelmetProvider>
       <React.StrictMode>
-        <App />
+        <LikedMoviesProvider>
+          <App />
+        </LikedMoviesProvider>
       </React.StrictMode>
     </HelmetProvider>
   </Provider>,
