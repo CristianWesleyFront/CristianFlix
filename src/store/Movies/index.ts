@@ -6,7 +6,7 @@ import { moviesSaga } from './saga';
 import { MoviesState, MovieErrorType } from './types';
 
 export const initialState: MoviesState = {
-  searchMovie: 'batman',
+  searchMovie: '',
   loading: false,
   error: null,
   Movies: [],
