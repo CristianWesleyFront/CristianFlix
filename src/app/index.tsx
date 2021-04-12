@@ -15,6 +15,8 @@ import { Header } from 'app/components/Header';
 
 import { HomePage } from './pages/HomePage/Loadable';
 import { Search } from './pages/Search/Loadable';
+import { MovieOne } from './pages/MovieOne/Loadable';
+
 import { NotFoundPage } from './components/NotFoundPage/Loadable';
 import { useTranslation } from 'react-i18next';
 
@@ -48,6 +50,7 @@ export function App() {
       <Switch>
         <Route exact path="/" component={HomePage} />
         <Route exact path="/search" component={Search} />
+        <Route exact path="/movie/:id" component={MovieOne} />
         <Route component={NotFoundPage} />
       </Switch>
       <GlobalStyle />

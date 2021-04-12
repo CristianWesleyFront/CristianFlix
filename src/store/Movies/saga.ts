@@ -7,7 +7,7 @@ import { MovieErrorType } from './types';
 import Api from 'service/Movies/moviesApi';
 
 export function* getMovies() {
-  yield delay(500);
+  yield delay(1000);
   // Select username from store
   const search: string = yield select(selectSearchMovie);
 

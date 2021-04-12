@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
 import { Container } from './styles';
 import { useDispatch } from 'react-redux';
@@ -7,13 +7,13 @@ import { useMoviesSlice } from 'store/Movies';
 export function Banner() {
   const dispatch = useDispatch();
   const [value, setValue] = useState('');
-  const [redirec, setRedirec] = useState(false);
+  const [redirect, setRedirect] = useState(false);
   const { actions } = useMoviesSlice();
 
   const handleSearch = e => {
     e.preventDefault();
     dispatch(actions.searchMovie(e.target.search.value));
-    setRedirec(true);
+    setRedirect(true);
   };
 
   const clear = () => {
@@ -25,9 +25,15 @@ export function Banner() {
     setValue(e.target.value);
   };
 
+  useEffect(() => {
+    if (redirect) {
+      setRedirect(false);
+    }
+  }, [redirect]);
+
   return (
     <Container>
-      {redirec && <Redirect to={`/search?q=${value}`} />}
+      {redirect && <Redirect to={`/search?q=${value}`} />}
       <div className="bannerGradient">
         <div className="search">
           <h2 className="title">Search Movies</h2>
