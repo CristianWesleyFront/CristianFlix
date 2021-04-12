@@ -1,5 +1,5 @@
 import { call, put, select, takeLatest, delay } from 'redux-saga/effects';
-import { selectSearchMovie } from './selectors';
+import { selectSearchMovie, newPageMovies } from './selectors';
 import { moviesActions as actions } from '.';
 import { MovieList } from 'types';
 import { MovieErrorType } from './types';
@@ -27,6 +27,28 @@ export function* getMovies() {
   }
 }
 
+export function* getMoviesNewPage() {
+  yield delay(1000);
+  // Select username from store
+  const search: string = yield select(selectSearchMovie);
+  const newPage: number = yield select(newPageMovies);
+
+  try {
+    // Call our request helper (see 'utils/request')
+
+    const response = yield call(Api.getMovies, { name: search, page: newPage });
+
+    const movies: MovieList[] = yield response?.Search;
+    if (movies?.length > 0) {
+      yield put(actions.MovieLoadedNewPage(movies));
+    } else {
+      yield put(actions.MovieError(MovieErrorType.MOVIE_NOT_FOUND));
+    }
+  } catch (err) {
+    yield put(actions.MovieError(MovieErrorType.RESPONSE_ERROR));
+  }
+}
+
 /**
  * Root saga manages watcher lifecycle
  */
@@ -36,4 +58,5 @@ export function* moviesSaga() {
   // It returns task descriptor (just like fork) so we can continue execution
   // It will be cancelled automatically on component unmount
   yield takeLatest(actions.loadMovies.type, getMovies);
+  yield takeLatest(actions.loadMoviesNewPage.type, getMoviesNewPage);
 }

@@ -7,7 +7,6 @@ interface iLike {
 export const Container = styled.div`
   width: 200px;
   height: 290px;
-  cursor: pointer;
 
   transform: scale(0.9);
   transition: all ease 0.2s;
@@ -58,14 +57,33 @@ export const Container = styled.div`
       margin-bottom: 15px;
     }
 
-    .like {
+    .actions {
+      display: flex;
+      justify-content: center;
+      align-items: center;
       margin-top: 40px;
-      cursor: pointer;
+      .like {
+        cursor: pointer;
+        margin-right: 30px;
+        transition: all ease 0.2s;
+        &:hover {
+          color: var(--red);
+          transform: scale(1.2);
+        }
+      }
 
-      transition: all ease 0.2s;
-      &:hover {
-        color: var(--red);
-        transform: scale(1.2);
+      a {
+        color: var(--text);
+        svg {
+          font-size: 2rem;
+          cursor: pointer;
+
+          transition: all ease 0.2s;
+          &:hover {
+            color: var(--red);
+            transform: scale(1.1);
+          }
+        }
       }
     }
   }

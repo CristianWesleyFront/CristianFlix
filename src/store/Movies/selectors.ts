@@ -22,3 +22,8 @@ export const errorMovies = createSelector(
   [moviesSelector],
   moviesState => moviesState.error,
 );
+
+export const newPageMovies = createSelector(
+  [moviesSelector],
+  moviesState => moviesState.newPage,
+);
