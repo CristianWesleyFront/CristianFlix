@@ -1,12 +1,7 @@
 import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Helmet } from 'react-helmet-async';
 import { useMoviesSlice } from 'store/Movies';
-import {
-  selectMovies,
-  errorMovies,
-  loadingMovies,
-} from 'store/Movies/selectors';
 
 import { Container } from './styles';
 
@@ -20,25 +15,18 @@ export function HomePage() {
   const { actions } = useMoviesSlice();
   const { likedMovies } = useLikedMovies();
 
-  const movies = useSelector(selectMovies);
-  const loading = useSelector(loadingMovies);
-  const error = useSelector(errorMovies);
-
-  const useEffectOnMount = (effect: React.EffectCallback) => {
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    useEffect(effect, []);
-  };
-
-  useEffectOnMount(() => {
+  const clear = () => {
     dispatch(actions.searchMovie(''));
     dispatch(actions.MovieLoaded([]));
-  });
+  };
+
+  useEffect(clear, [dispatch, actions]);
 
   return (
     <>
       <Helmet>
         <title>Home Page</title>
-        <meta name="description" content="A home page" />
+        <meta name="description" content="Home page" />
       </Helmet>
 
       <Container>
@@ -52,12 +40,6 @@ export function HomePage() {
               loading={false}
             />
           )}
-          <MoviesRow
-            title={'BATMAN Movies'}
-            items={[...movies, ...movies]}
-            error={error}
-            loading={loading}
-          />
         </section>
       </Container>
     </>

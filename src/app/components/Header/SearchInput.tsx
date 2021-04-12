@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useMoviesSlice } from 'store/Movies';
@@ -18,6 +18,12 @@ export function SearchInput() {
       setRedirect(true);
     }
   };
+
+  useEffect(() => {
+    if (redirect) {
+      setRedirect(false);
+    }
+  }, [redirect]);
 
   return (
     <SearchContainer>

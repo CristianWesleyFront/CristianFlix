@@ -1,7 +1,6 @@
 /* eslint-disable import/no-anonymous-default-export */
 import { Api } from '../api';
 import { requestGet } from '../request';
-
 export interface iGetMovies {
   name: string;
 }
