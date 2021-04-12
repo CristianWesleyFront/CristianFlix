@@ -11,12 +11,21 @@ export function SearchInput() {
   const searchString = useSelector(selectSearchMovie);
   const [redirect, setRedirect] = useState(false);
 
-  const handleChange = e => {
-    dispatch(actions.searchMovie(e.target.value));
+  const handleSearch = (text: string) => {
+    dispatch(actions.searchMovie(text));
     dispatch(actions.MovieError(null));
-    if (e.target.value.length === 3) {
+    if (text.length === 3) {
       setRedirect(true);
     }
+  };
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    handleSearch(e.target.search.value);
+  };
+
+  const handleChange = e => {
+    handleSearch(e.target.value);
   };
 
   useEffect(() => {
@@ -26,8 +35,8 @@ export function SearchInput() {
   }, [redirect]);
 
   return (
-    <SearchContainer>
-      {redirect && <Redirect to={`/search?q=${searchString}`} />}
+    <SearchContainer onSubmit={handleSubmit}>
+      {redirect && <Redirect to={`/search`} />}
 
       <input
         id="headerInput"

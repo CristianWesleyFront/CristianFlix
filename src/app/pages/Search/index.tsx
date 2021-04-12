@@ -1,7 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-// import useQuery from 'hooks/useQueryParams';
 import { Helmet } from 'react-helmet-async';
 import { Container } from './styles';
 import { useMoviesSlice } from 'store/Movies';
@@ -19,7 +18,6 @@ import { Loading } from 'app/components/Loading';
 import { Error, NotFound } from 'app/components/Error';
 
 export function Search() {
-  // const queryParms = useQuery();
   const dispatch = useDispatch();
   const { actions } = useMoviesSlice();
   const movies = useSelector(selectMovies);
@@ -27,22 +25,12 @@ export function Search() {
   const loading = useSelector(loadingMovies);
   const error = useSelector(errorMovies);
   const newPage = useSelector(newPageMovies);
-  // const querySearch = queryParms.get('q');
+
   const { likedMovies } = useLikedMovies();
 
   useEffect(() => {
     const element = document.getElementById('headerInput');
     element?.focus();
-
-    // if (
-    //   search === '' &&
-    //   querySearch !== null &&
-    //   loading === false &&
-    //   error === null
-    // ) {
-    //   dispatch(actions.searchMovie(querySearch));
-    //   dispatch(actions.loadMovies());
-    // }
 
     if (search !== '') {
       dispatch(actions.loadMovies());

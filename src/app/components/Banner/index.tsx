@@ -33,7 +33,7 @@ export function Banner() {
 
   return (
     <Container>
-      {redirect && <Redirect to={`/search?q=${value}`} />}
+      {redirect && <Redirect to={`/search`} />}
       <div className="bannerGradient">
         <div className="search">
           <h2 className="title">Search Movies</h2>
