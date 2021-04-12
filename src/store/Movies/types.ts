@@ -5,6 +5,8 @@ export interface MoviesState {
   loading: boolean;
   error?: MovieErrorType | null;
   Movies: MovieList[];
+  totalResults: number;
+  newPage: number;
 }
 
 export enum MovieErrorType {

@@ -10,11 +10,11 @@ import {
   selectSearchMovie,
   errorMovies,
   loadingMovies,
+  newPageMovies,
 } from 'store/Movies/selectors';
 import { useLikedMovies } from 'hooks/useLikedMovies';
 import { GridMovies } from 'app/components/GridMovies';
 import { MovieListLayout } from 'types';
-
 import { Loading } from 'app/components/Loading';
 import { Error, NotFound } from 'app/components/Error';
 
@@ -26,6 +26,7 @@ export function Search() {
   const search = useSelector(selectSearchMovie);
   const loading = useSelector(loadingMovies);
   const error = useSelector(errorMovies);
+  const newPage = useSelector(newPageMovies);
   // const querySearch = queryParms.get('q');
   const { likedMovies } = useLikedMovies();
 
@@ -47,6 +48,14 @@ export function Search() {
       dispatch(actions.loadMovies());
     }
   }, [actions, dispatch, search]);
+
+  useEffect(() => {
+    dispatch(actions.loadMoviesNewPage());
+  }, [newPage]);
+
+  const HandleNewPage = (page: number) => {
+    dispatch(actions.setNewPage(page));
+  };
 
   const dataFilter = useMemo(() => {
     if (likedMovies?.length === 0) {
@@ -86,7 +95,15 @@ export function Search() {
         {error === 1 && <Error />}
 
         {loading === false && error === null && dataFilter.length > 0 && (
-          <GridMovies items={dataFilter} search={search} />
+          <>
+            <GridMovies items={dataFilter} search={search} />
+            <button
+              className="loadMone"
+              onClick={() => HandleNewPage(newPage + 1)}
+            >
+              Load more..
+            </button>
+          </>
         )}
       </Container>
     </>

@@ -10,6 +10,8 @@ export const initialState: MoviesState = {
   loading: false,
   error: null,
   Movies: [],
+  totalResults: 0,
+  newPage: 2,
 };
 
 const slice = createSlice({
@@ -23,6 +25,7 @@ const slice = createSlice({
       state.loading = true;
       state.error = null;
       state.Movies = [];
+      state.newPage = 2;
     },
     MovieLoaded(state, action: PayloadAction<MovieList[]>) {
       const Movies = action.payload;
@@ -32,6 +35,19 @@ const slice = createSlice({
     MovieError(state, action: PayloadAction<MovieErrorType | null>) {
       state.error = action.payload;
       state.loading = false;
+    },
+    loadMoviesNewPage(state) {
+      state.loading = true;
+      state.error = null;
+    },
+    MovieLoadedNewPage(state, action: PayloadAction<MovieList[]>) {
+      const Movies = action.payload;
+      state.Movies = [...state.Movies, ...Movies];
+      state.loading = false;
+    },
+    setNewPage(state, action: PayloadAction<number>) {
+      const newPage = action.payload;
+      state.newPage = newPage;
     },
   },
 });
