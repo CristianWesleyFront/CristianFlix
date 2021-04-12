@@ -24,7 +24,7 @@ export function LikeButton({ item }) {
       <BsFillHeartFill
         style={{
           fontSize: '2rem',
-          color: item?.liked ? '#e50914' : '#fff',
+          color: item?.liked ? 'var(--red)' : '#fff',
         }}
       />
     </div>
