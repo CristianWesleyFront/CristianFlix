@@ -2,20 +2,11 @@ package ia.fullStackChallenge.movie.model;
 
 import java.util.List;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
-@Getter
-@Setter
 class MovieRatings {
 	private String Source;
 	private String Value;
 }
 
-@Getter
-@Setter
-@NoArgsConstructor
 public class MovieModel {
 	private String Title;
 	private String Year;

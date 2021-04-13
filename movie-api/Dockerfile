@@ -1,7 +1,9 @@
-FROM openjdk
+FROM maven
 
 WORKDIR /app
 
-COPY /movie-api/target/movie-api-1.0.jar /app/movie-api.jar
+COPY /movie-api/. /app
 
-ENTRYPOINT [ "java", "-jar", "movie-api.jar" ]
+RUN mvn clean install -Dmaven.test.skip=true
+
+ENTRYPOINT [ "java", "-jar", "target/movie-api-1.0.jar" ]
