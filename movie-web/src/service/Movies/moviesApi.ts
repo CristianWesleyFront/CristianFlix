@@ -14,7 +14,10 @@ export default {
   getMovies: (params: iGetMovies) => {
     const { name, page } = params;
 
-    return requestGet(Api, `getMovies?s=${name}${page ? `&page=${page}` : ''}`);
+    return requestGet(
+      Api,
+      `getMovies?s=${name}${page ? `&page=${page}` : `&page=1`}`,
+    );
   },
   getOneMovie: (params: iGetOneMovies) => {
     const { id } = params;
