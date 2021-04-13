@@ -10,20 +10,15 @@ export interface iGetOneMovies {
   id: string;
 }
 
-const API_OMDB_KEY = '9163174a';
-
 export default {
   getMovies: (params: iGetMovies) => {
     const { name, page } = params;
 
-    return requestGet(
-      Api,
-      `?apikey=${API_OMDB_KEY}&s=${name}${page ? `&page=${page}` : ''}`,
-    );
+    return requestGet(Api, `getMovies?s=${name}${page ? `&page=${page}` : ''}`);
   },
   getOneMovie: (params: iGetOneMovies) => {
     const { id } = params;
 
-    return requestGet(Api, `?apikey=${API_OMDB_KEY}&i=${id}`);
+    return requestGet(Api, `getOneMovie?i=${id}`);
   },
 };
