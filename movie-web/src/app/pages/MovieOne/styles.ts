@@ -48,6 +48,10 @@ export const ContainerInformations = styled.div`
       font-size: 18px;
       color: #999;
     }
+
+    .actions {
+      margin-top: 25px;
+    }
   }
 
   img {
@@ -90,5 +94,35 @@ export const ContainerInformations = styled.div`
     .genres {
       font-size: 14px;
     }
+  }
+`;
+
+interface ILikedButton {
+  isLiked: boolean;
+}
+
+export const LikeButton = styled.button<ILikedButton>`
+  display: inline-block;
+  font-size: 16px;
+  font-weight: 700;
+  padding: 12px 15px;
+  border-radius: 5px;
+  text-decoration: none;
+  margin-right: 10px;
+  opacity: 1;
+  transition: all ease 0.2s;
+  border: none;
+  cursor: pointer;
+  background-color: ${props => (props.isLiked ? 'var(--red)' : '#fff')};
+  color: ${props => (props.isLiked ? '#fff' : 'var(--background)')};
+
+  svg {
+    font-size: 1rem;
+    margin-right: 5px;
+  }
+
+  &:hover {
+    background-color: ${props => (props.isLiked ? '#fff' : 'var(--red)')};
+    color: ${props => (props.isLiked ? 'var(--background)' : '#fff')};
   }
 `;

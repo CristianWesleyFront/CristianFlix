@@ -1,17 +1,22 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { useParams } from 'react-router-dom';
+import { BsFillHeartFill } from 'react-icons/bs';
 import Api from 'service/Movies/moviesApi';
 import { Movie as IMovie } from 'types';
 import { MovieErrorType } from 'store/Movies/types';
 
-import { Container, ContainerInformations } from './styles';
+import { Container, ContainerInformations, LikeButton } from './styles';
 import { Loading } from 'app/components/Loading';
 import { Error } from 'app/components/Error';
+
+import { useLikedMovies } from 'hooks/useLikedMovies';
 
 export function MovieOne() {
   const [movie, setMovie] = useState<IMovie | any>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<MovieErrorType | null>(null);
+  const [isLiked, setIsLiked] = useState(false);
+  const { likedMovies, createliked, removeliked } = useLikedMovies();
 
   const { id } = useParams<any>();
 
@@ -37,6 +42,12 @@ export function MovieOne() {
   useEffect(() => {
     SearchMovie();
   }, [SearchMovie]);
+
+  useEffect(() => {
+    if (movie) {
+      setIsLiked(likedMovies.findIndex(e => e.imdbID === movie.imdbID) >= 0);
+    }
+  }, [likedMovies, movie]);
 
   return (
     <Container>
@@ -72,6 +83,25 @@ export function MovieOne() {
             </div>
             <div className="informationText">
               Awards: <strong> {movie?.Awards} </strong>
+            </div>
+            <div className="actions">
+              <LikeButton
+                isLiked={isLiked}
+                onClick={() => {
+                  isLiked
+                    ? removeliked(movie?.imdbID)
+                    : createliked({
+                        Title: movie?.Title,
+                        Year: movie?.Year,
+                        imdbID: movie?.imdbID,
+                        Type: movie?.Type,
+                        Poster: movie?.Poster,
+                      });
+                }}
+              >
+                <BsFillHeartFill />
+                {isLiked ? ' LIKED !' : ' LIKE !'}
+              </LikeButton>
             </div>
           </div>
           <img src={movie?.Poster} alt={movie?.Title} />
