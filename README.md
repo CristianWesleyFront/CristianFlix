@@ -19,17 +19,9 @@
 
 ## 📓 Sobre
 
-Referência do projeto **Desafio vaga Full Stack Pleno** do [**Atlântico**](https://www.atlantico.com.br/)
+Referência do projeto **Desafio vaga Full Stack Pleno**
 
 Essa é uma aplicação de pesquisa e visualização de informações sobre filmes, o design utilizado na aplicação faz referência a plataforma de filmes [Netflix](https://www.netflix.com/browse), onde tentei ser bem fiel a forma que as informações são apresentadas para usuário.
-
-### 🥂 **Observação para os avaliadores**
-
-Peço desculpas antecipadas por alguns pontos impostos no teste que, por conta do layout e design que optei por fazer, possam ter sido levemente modificados.
-
-- **O resultado da pesquisa será uma lista de filmes que devem ser exibidos para o usuário nessa mesma página Home** : Como optei por seguir a experiência que o usuário tem no site da Netflix, ao realizar uma pesquisa, o usuário é redirecionado para uma pagina de "/search", e é feito as demais pesquisas na pagina por um campo de input que é encontrado no Header.
-
-- **Os filmes marcados como "Gostei" devem aparecer no início da lista** : Como estratégia de sanar esse ponto , optei por criar uma listagem na tela de Home, onde o usuário pode ver todos os filmes que deu "Like", porem também é possível ver que um filme esta como "liked" ao passar o mouse em cima do poster na tela de "/search".
 
 ### 🧱 **Funcionalidades da aplicação**
 
