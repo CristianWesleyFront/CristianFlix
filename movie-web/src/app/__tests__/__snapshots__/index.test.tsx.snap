@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<App /> should render and match the snapshot 1`] = `
+<BrowserRouter>
+  <Helmet
+    defaultTitle="movie"
+    defer={true}
+    encodeSpecialCharacters={true}
+    titleTemplate="%s - CRISTIANFLIX"
+  >
+    <meta
+      content="A cristainFlix application"
+      name="description"
+    />
+  </Helmet>
+  <Header
+    color={false}
+    data-testid="app-Header"
+  />
+  <Switch>
+    <Route
+      component={[Function]}
+      exact={true}
+      path="/"
+    />
+    <Route
+      component={[Function]}
+      exact={true}
+      path="/search"
+    />
+    <Route
+      component={[Function]}
+      exact={true}
+      path="/movie/:id"
+    />
+    <Route
+      component={[Function]}
+    />
+  </Switch>
+  <Memo(GlobalStyleComponent) />
+</BrowserRouter>
+`;

@@ -1,0 +1,15 @@
+services:
+  api:
+    build:
+      dockerfile: ./movie-api/Dockerfile
+      context: .
+    container_name: movie-api
+    ports:
+      - '8080:8080'
+  web:
+    build:
+      dockerfile: ./movie-web/Dockerfile
+      context: .
+    container_name: movie-web
+    ports:
+      - '3000:3000'
