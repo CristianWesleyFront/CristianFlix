@@ -1,10 +1,8 @@
 # CRISTIANFLIX - Fullstack Challenge Cristian Correia
 
-
-
 <div align="center">
   <span align="center">
-    <img src="https://raw.githubusercontent.com/Instituto-Atlantico/fullstack-challenge-cristian_correa/develop/movie-web/src/assets/logoCristianFlix.png?token=AGMEU7SD4RH7TFJQBMJNB3TAO4YFI" width="300" alt="CristianFlix Logo" />
+    <img src="https://github.com/CristianWesleyFront/CristianFlix/blob/master/movie-web/src/assets/logoCristianFlix.png" width="300" alt="CristianFlix Logo" />
   </span>
 
   <img src="https://media.giphy.com/media/3c6KOO1LKYVSgIyExI/giphy.gif" width="85%"> 
@@ -33,15 +31,13 @@ Peço desculpas antecipadas por alguns pontos impostos no teste que, por conta d
 
 - **Os filmes marcados como "Gostei" devem aparecer no início da lista** : Como estratégia de sanar esse ponto , optei por criar uma listagem na tela de Home, onde o usuário pode ver todos os filmes que deu "Like", porem também é possível ver que um filme esta como "liked" ao passar o mouse em cima do poster na tela de "/search".
 
-
 ### 🧱 **Funcionalidades da aplicação**
 
 - É possível pesquisar por filmes através da barra de pesquisa que se encontra na Home e no icone de pesquisa que se encontra no Header.
 
-- Todo filme ao passar o mouse por cima, apresenta 2 opções, uma de dar um like e outra de visualizar informações. 
+- Todo filme ao passar o mouse por cima, apresenta 2 opções, uma de dar um like e outra de visualizar informações.
 
 - Todo usuário pode ter uma lista de inifitos filmes como "liked", essa lista é apresentada na tela de Home e fica armazenada no navegador do usuário.
-
 
 # 👨‍💻 Tecnologias utilizadas
 
@@ -56,7 +52,6 @@ Peço desculpas antecipadas por alguns pontos impostos no teste que, por conta d
 - [Redux Saga](https://styled-components.com/)
 - [React Router](https://reactrouter.com/)
 
-
 ### Back End
 
 - [Java](https://www.java.com/pt-BR/)
@@ -67,18 +62,16 @@ Peço desculpas antecipadas por alguns pontos impostos no teste que, por conta d
 
 - [Docker](https://www.docker.com/)
 
-
 ---
 
 ## 📦 Como baixar o projeto
-
 
 ### Com **[Docker](https://www.docker.com/)** :
 
 ```bash
 
  # Clonar o repositório
- $ git clone https://github.com/Instituto-Atlantico/fullstack-challenge-cristian_correa
+ $ git clone https://github.com/CristianWesleyFront/CristianFlix
 
  # Entrar no diretorio
  $ cd fullstack-challenge-cristian_correa
