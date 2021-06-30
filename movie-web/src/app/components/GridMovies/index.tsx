@@ -13,8 +13,9 @@ interface iProps {
 export function GridMovies({ items, search }: iProps) {
   return (
     <Container>
-      <h1>
-        You searched: <span>{search}</span>
+      <h1 aria-label="GridMovies-title">
+        You searched:{' '}
+        <span aria-label="GridMovies-search">{`"${search}"`}</span>
       </h1>
       <section className="flex">
         {items?.map(e => (

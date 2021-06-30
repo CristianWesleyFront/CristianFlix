@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import { Container } from './styles';
 import { useDispatch } from 'react-redux';
@@ -12,7 +12,7 @@ export function Banner() {
 
   const handleSearch = e => {
     e.preventDefault();
-    dispatch(actions.searchMovie(e.target.search.value));
+    dispatch(actions.searchMovie(value));
     setRedirect(true);
   };
 
@@ -25,20 +25,21 @@ export function Banner() {
     setValue(e.target.value);
   };
 
-  useEffect(() => {
-    if (redirect) {
-      setRedirect(false);
-    }
-  }, [redirect]);
-
   return (
-    <Container>
+    <Container aria-label="banner img">
       {redirect && <Redirect to={`/search`} />}
       <div className="bannerGradient">
         <div className="search">
-          <h2 className="title">Search Movies</h2>
-          <form onSubmit={handleSearch}>
+          <h2 className="title" aria-label="banner title">
+            Search Movies
+          </h2>
+          <form
+            onSubmit={handleSearch}
+            aria-label="form search"
+            data-testid="form-search"
+          >
             <input
+              aria-label="banner search input"
               type="search"
               placeholder="Search"
               name="search"
@@ -46,10 +47,18 @@ export function Banner() {
               onChange={handleChange}
             />
             <div className="bannerButtons">
-              <button type="submit" className="seachButton">
+              <button
+                type="submit"
+                className="seachButton"
+                aria-label="banner submit button"
+              >
                 Search
               </button>
-              <span className="clearButton" onClick={clear}>
+              <span
+                className="clearButton"
+                onClick={clear}
+                aria-label="banner clear button"
+              >
                 clear
               </span>
             </div>

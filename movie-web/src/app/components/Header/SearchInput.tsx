@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useMoviesSlice } from 'store/Movies';
@@ -28,17 +28,12 @@ export function SearchInput() {
     handleSearch(e.target.value);
   };
 
-  useEffect(() => {
-    if (redirect) {
-      setRedirect(false);
-    }
-  }, [redirect]);
-
   return (
-    <SearchContainer onSubmit={handleSubmit}>
-      {redirect && <Redirect to={`/search`} />}
+    <SearchContainer onSubmit={handleSubmit} aria-label="HeaderInput-form">
+      {redirect && <Redirect aria-label="redirectToSearch" to={`/search`} />}
 
       <input
+        aria-label="HeaderInput"
         id="headerInput"
         type="search"
         name="search"

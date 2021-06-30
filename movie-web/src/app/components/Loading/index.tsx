@@ -5,7 +5,7 @@ import { Container } from './styles';
 export function Loading() {
   return (
     <Container>
-      <div className="lds-ring">
+      <div className="lds-ring" aria-label="lds-ring">
         <div></div>
         <div></div>
         <div></div>

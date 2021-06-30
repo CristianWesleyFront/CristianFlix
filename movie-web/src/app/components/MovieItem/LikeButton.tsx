@@ -8,6 +8,7 @@ export function LikeButton({ item }) {
 
   return (
     <div
+      aria-label={`likeButton`}
       className="like"
       onClick={() => {
         item?.liked
@@ -22,6 +23,7 @@ export function LikeButton({ item }) {
       }}
     >
       <BsFillHeartFill
+        aria-label={`likeButton-icon`}
         style={{
           fontSize: '2rem',
           color: item?.liked ? 'var(--red)' : '#fff',
